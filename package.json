@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack serve --open & nodemon ./server/server.js"
+    "dev": "cross-env NODE_ENV=development webpack serve --open & nodemon ./server/server.js",
+    "server" : "nodemon ./server/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,8 +21,11 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "css": "^3.0.0",
+    "e": "^0.2.1",
+    "express": "^4.17.2",
     "html-webpack-plugin": "^5.5.0",
     "loader": "^2.1.1",
+    "pg": "^8.7.3",
     "react": "^17.0.2",
     "react-redux": "^7.2.6",
     "sass": "^1.49.7",
