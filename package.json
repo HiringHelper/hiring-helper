@@ -2,7 +2,7 @@
   "name": "hiring-helper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --open & nodemon ./server/server.js",
     "server" : "nodemon ./server/server.js"
@@ -12,7 +12,9 @@
   "devDependencies": {
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
+    "css-loader": "^6.6.0",
     "nodemon": "^2.0.15",
+    "react-dom": "^17.0.2",
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
@@ -20,6 +22,7 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@reduxjs/toolkit": "^1.7.2",
     "css": "^3.0.0",
     "e": "^0.2.1",
     "express": "^4.17.2",
