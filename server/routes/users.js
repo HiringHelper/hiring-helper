@@ -9,7 +9,9 @@ router.post('/create-user', userController.createUser, (req,res) =>{
     return res.status(200).json({user: res.locals.newUser})
 });
 
-router.post('/create-user', (req,res)=>{
+//confirm with idan what the default parm is in sql db 
+router.delete('/delete-user', userController.deleteUser, (req,res)=>{
+    return res.status(200).json({deleted: res.locals.deletedUser})
 });
 
 router.delete('/create-user', (req,res)=>{
