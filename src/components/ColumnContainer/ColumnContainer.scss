@@ -1,0 +1,11 @@
+@import '../../variables';
+
+#column-container {
+  flex: 1 0 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background;
+  overflow-y: scroll;
+  // font-family: $font-playfair;
+}

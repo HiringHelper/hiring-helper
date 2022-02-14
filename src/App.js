@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { increment } from './redux/jobsSlice';
+import React from 'react';
+import ColumnContainer from './components/ColumnContainer/ColumnContainer.jsx';
+import Header from './components/Header/Header.jsx';
 
 const App = () => {
-  const val = useSelector((state) => state.jobs.value);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(increment(10));
-  }, [])
-
-  return(
-    <div>
-      {val}
+  return (
+    <div id='app'>
+      <Header />
+      <ColumnContainer />
     </div>
-  )
-}
+  );
+};
 
 export default App;

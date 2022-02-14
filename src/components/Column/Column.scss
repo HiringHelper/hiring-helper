@@ -1,0 +1,39 @@
+@import '../../variables';
+
+.column {
+  flex: 1 0 10%;
+  height: 95%;
+  gap: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.1rem solid $button-hover;
+  border-radius: .5rem;
+  background-color: whitesmoke;
+  transition: 200ms;
+}
+
+.column:hover {
+  box-shadow: 0 0 0.1rem;
+  transition: 200ms;
+}
+
+.column-title {
+  flex: 0 0 5%;
+  border-bottom: 0.1rem solid rgb(197, 197, 197);
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-title p {
+  text-align: center;
+}
+
+.card-container {
+  flex: 1;
+  width: 90%;
+  overflow-y: scroll;
+}

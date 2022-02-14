@@ -1,0 +1,41 @@
+@import '../../variables';
+
+#header {
+  flex: 1 0 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $header;
+  box-shadow: 0rem 0rem 0.2rem;
+  z-index: 1;
+}
+
+#add-job {
+  padding: 0.5rem 1rem;
+  margin-left: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: 200ms;
+}
+
+#add-job:hover {
+  background-color: $button-hover;
+  color: white;
+  box-shadow: 0 0 0.2rem $button-hover;
+  transition: 200ms;
+}
+
+#add-job:active {
+  background-color: $button-active;
+  color: white;
+  box-shadow: 0 0 0.2rem $button-active;
+  transition: 200ms;
+}
+
+#title {
+  color: $title;
+}
+
+#hello {
+  margin-right: 2rem;
+}
