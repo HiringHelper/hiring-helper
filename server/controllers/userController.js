@@ -1,16 +1,61 @@
 const pool = require('../models/UserModel.js')
+const bcrypt = require('bcryptjs');
 const userController = {};
 
 
 
 
-userController.createUser = async (req,res,next) => {
-    try{
-        const {firstName,lastName,email,Password} = req.body;
-        const q = 'INSERT INTO users (firstName, lastName, email, Password) VALUES ($1, $2, $3, $4) RETURNING *'
-        //
-        const newUser = await pool.query(q, [firstName, lastName, email, Password])
+userController.getUser = async (req,res,next) => {
+  try{
+      const {user_id} = req.body;
+      const q = 'SELECT * FROM users WHERE user_id=$1'
+ 
+      const user = await pool.query(q, [user_id])
+      if(user.rows.length === 0){
+        return res.status(404).send('User not Found')
+      }
+      res.locals.user = user.rows[0];
+      next();
+    } catch(error)  {
+      const errObj = {
+          log: `Error caught in userController middleware @ getUser`,
+          status: 400,
+          message: {
+            error: `${error}`,
+          },
+        };
+        next(errObj);
+    }
+}
 
+userController.checkUserEmail = async (req, res, next) => {
+  const {email} = req.body;
+  const sqlQuery = 'SELECT * FROM users WHERE email=$1';
+  try{
+    const usersWithEmail = await pool.query(sqlQuery, [email])
+    if(usersWithEmail.rows.length === 0){
+      return next()
+    }else{
+      return res.status(409).send('Email already in use')
+    }
+  }catch(error){
+    console.log(error)
+    return next(error)
+  }
+}
+
+userController.createUser = async (req,res,next) => {
+    const {firstName,lastName,email,password} = req.body;
+    const saltRounds = 10;
+    const q = 'INSERT INTO users (firstName, lastName, email, password) VALUES ($1, $2, $3, $4) RETURNING *'
+
+    bcrypt.hash(password, saltRounds, async (err, hash) => {
+      if(err){
+        console.log(err)
+        return next(err)
+      }
+      try{
+        const newUser = await pool.query(q, [firstName, lastName, email, hash])
         res.locals.newUser = newUser
         next();
       } catch(error)  {
@@ -23,6 +68,8 @@ userController.createUser = async (req,res,next) => {
           };
           next(errObj);
       }
+    })
+    
 }
 
 userController.deleteUser = async (req,res,next) => {
@@ -49,13 +96,15 @@ userController.deleteUser = async (req,res,next) => {
 
 userController.updateUser = async (req,res,next) => {
     try{
-        const {firstName, lastName, email, password, user_id} = req.body;
+        const {firstName, lastName, email, user_id} = req.body;
 
-        const q = 'UPDATE users SET firstName=$1, lastName=$2, email=$3, password=$4 WHERE user_id=$5 RETURNING *'
-        const updatedUser = await pool.query(q, [firstName, lastName, email, password, user_id])
-
-        res.locals.updatedUser = updatedUser;
-
+        const q = 'UPDATE users SET firstName=$1, lastName=$2, email=$3 WHERE user_id=$4 RETURNING *'
+        const updatedUser = await pool.query(q, [firstName, lastName, email,  user_id])
+        console.log(updatedUser.rows)
+        if(updatedUser.rows.length === 0){
+          return res.status(404).send('no user found with given id')
+        }
+        res.locals.updatedUser = updatedUser.rows[0];
         next();
       } catch(error)  {
         const errObj = {
@@ -67,5 +116,46 @@ userController.updateUser = async (req,res,next) => {
           };
           next(errObj);
       }
+}
+
+userController.verifyUser = async (req,res,next) => {
+  const {email, password} = req.body;
+  
+  const q = 'SELECT * FROM users WHERE email=$1'
+  const user = await pool.query(q, [email])
+  if(user.rows.length === 0){
+    return res.status(401).send('Invalid Username or Password')
+  }
+  const hashedPass = user.rows[0].password
+
+  res.locals.user = user;
+  bcrypt.compare(password, hashedPass, (err,result) =>{
+    if(err){
+      console.log(err)
+      next(err)
+    }
+    if(result){
+      next()
+    }else{
+      return res.status(401).send('Invalid Username or Password')
+    }
+  })
+
+}
+
+userController.getJobsForUser = async (req,res,next) => {
+  const {user_id} =res.locals.user.rows[0]
+  
+  const q = 'SELECT * FROM jobs WHERE user_id=$1'
+  try{
+    const jobs = await pool.query(q, [user_id]);
+    res.locals.userJobs = jobs.rows;
+    next();
+
+  }catch(error){
+    console.log(error)
+    next(error)
+  }
+
 }
 module.exports = userController;

@@ -8,8 +8,10 @@ app.use(express.json());
 
 //routing here
 const userRouter = require('./routes/users.js');
+const jobRouter = require('./routes/jobs.js');
 
 app.use('/user', userRouter);
+app.use('/jobs', jobRouter);
 
 //try to visit random route
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));

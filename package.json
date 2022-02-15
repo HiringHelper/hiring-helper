@@ -27,6 +27,8 @@
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.4.2",
     "@reduxjs/toolkit": "^1.7.2",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "css": "^3.0.0",
     "e": "^0.2.1",
     "express": "^4.17.2",
