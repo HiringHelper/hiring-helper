@@ -1,0 +1,59 @@
+@import '../../variables';
+
+h1 {
+  font-family: $font-playfair;
+  color: $title;
+}
+#save-job {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: 200ms;
+}
+
+#save-job:hover {
+  background-color: $button-hover;
+  color: white;
+  box-shadow: 0 0 0.2rem $button-hover;
+  transition: 200ms;
+}
+
+#save-job:active {
+  background-color: $button-active;
+  color: white;
+  box-shadow: 0 0 0.2rem $button-active;
+  transition: 200ms;
+}
+
+#modal-overlay {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#form-modal {
+  position: relative;
+  background-color: $background;
+  color: white;
+  flex: 0 0 70%;
+  min-height: 50%;
+  padding: 1rem 1rem;
+  gap: 1rem;
+  font-family: $font-raleway;
+  border: 0.1rem solid $button-hover;
+  border-radius: .5rem;
+}
+
+
+#description {
+  width: 90%;
+}
+

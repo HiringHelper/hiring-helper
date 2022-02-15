@@ -38,7 +38,7 @@ function Column(props) {
             <div className='card-container' {...providedDrop.droppableProps} ref={providedDrop.innerRef}>
               {cards.map((ele, ind) => {
                 return (
-                  <Draggable key={ind} draggableId={'wishlist-' + ind + '-' + ele} index={ind}>
+                  <Draggable key={ind} draggableId={'wishlist-' + props.index + '-' + ele} index={ind}>
                     {(providedDrag, snapshot) => <Card title={ele} ind={ind} provided={providedDrag} isDragging={snapshot.isDragging} />}
                   </Draggable>
                 );

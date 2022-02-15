@@ -10,16 +10,19 @@ function ColumnContainer() {
     console.log('drag start');
   }
 
-  function dragEnd(item){
+  function dragEnd(result){
+    const {destination, source, draggableId } = result
+    console.log(destination.droppableId)
+    console.log(source.droppableId)
     console.log('drag end');
-    console.log('item is: ', item);
+    // console.log('item is: ', item);
   }
 
   return (
     <div id='column-container'>
       <DragDropContext onDragEnd={dragEnd} onDragStart={dragStart}>
-        {titles.map((ele) => {
-          return <Column title={ele} />;
+        {titles.map((ele, index) => {
+          return <Column title={ele} inde={index}/>;
         })}
       </DragDropContext>
     </div>

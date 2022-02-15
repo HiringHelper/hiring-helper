@@ -5,7 +5,7 @@ const initialState = {
   Applied: [],
   Interview: ['Netflix'],
   Offer: [],
-  Rejected: ['LinkedIn']
+  Rejected: ['LinkedIn'],
 };
 
 export const jobsSlice = createSlice({
@@ -15,6 +15,7 @@ export const jobsSlice = createSlice({
     increment: (state, action) => {
       state.value += action.payload;
     },
+    drop: (state, action) => {},
   },
 });
 
