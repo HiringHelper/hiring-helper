@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './Header.scss';
 
 function Header() {
+  const jobModal = useSelector((state) => state.modals.jobModal)
+  const dispatch = useDispatch()
+
+  const [ openJobModal, setOpenJobModal ] = useState(false);
+
+
   return(
     <div id='header'>
       <button id='add-job'>
