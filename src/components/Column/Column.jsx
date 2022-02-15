@@ -25,7 +25,7 @@ function Column(props) {
   // ];
   const cards = useSelector((state) => state.jobs[props.title]);
   
-  const name = props.title + '-column';
+  const name = props.title;
 
   return (
     <div className='column'>
@@ -38,7 +38,7 @@ function Column(props) {
             <div className='card-container' {...providedDrop.droppableProps} ref={providedDrop.innerRef}>
               {cards.map((ele, ind) => {
                 return (
-                  <Draggable key={ind} draggableId={'wishlist-' + props.index + '-' + ele} index={ind}>
+                  <Draggable key={ind} draggableId={ele} index={ind}>
                     {(providedDrag, snapshot) => <Card title={ele} ind={ind} provided={providedDrag} isDragging={snapshot.isDragging} />}
                   </Draggable>
                 );
