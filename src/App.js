@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import AddJobModal from './components/AddJobModal/AddJobModal.jsx';
 import showModalSlice from './redux/showModalSlice.js';
 import ColumnContainer from './components/ColumnContainer/ColumnContainer.jsx';
 import Header from './components/Header/Header.jsx';
@@ -14,9 +13,6 @@ const App = () => {
     <div id='app'>
       <Header />
       <ColumnContainer />
-      {!jobModal && (
-        <AddJobModal />
-      )}
     </div>
   );
 };
