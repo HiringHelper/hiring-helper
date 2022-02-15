@@ -1,9 +1,9 @@
 
 /* We need to add a valid URI string */
-// const myURI = 'postgres://vryumiht:n4vaa43hqwZV9pndx5LeEwn1K9IT0oUi@castor.db.elephantsql.com/vryumiht';
+const myURI = 'postgres://vryumiht:n4vaa43hqwZV9pndx5LeEwn1K9IT0oUi@castor.db.elephantsql.com/vryumiht';
 
 //just for testing DELETE THIS LATER
-const myURI = 'postgres://wxzxolqw:7h2Tx5FNuuBlImoFxIavchRUltoOPhs8@castor.db.elephantsql.com/wxzxolqw'
+// const myURI = 'postgres://wxzxolqw:7h2Tx5FNuuBlImoFxIavchRUltoOPhs8@castor.db.elephantsql.com/wxzxolqw'
 
 /*if you're working on a web app/software which makes frequent queries you'll want to use 
 a connection pool
