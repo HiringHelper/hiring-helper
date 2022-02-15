@@ -5,6 +5,10 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 // ADD STARTER DATA REQUEST ROUTE HANDLER HERE
+router.get('/get-user', userController.getUser, (req,res) =>{
+    return res.status(201).json({user: res.locals.user})
+});
+
 router.post('/create-user', userController.createUser, (req,res) =>{
     return res.status(201).json({user: res.locals.newUser})
 });
