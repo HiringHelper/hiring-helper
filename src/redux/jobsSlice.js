@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  value: 1,
+  Wishlist: ['Chase', 'Facebook'],
+  Applied: [],
+  Interview: ['Netflix'],
+  Offer: [],
+  Rejected: ['LinkedIn']
 };
 
 export const jobsSlice = createSlice({
