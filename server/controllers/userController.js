@@ -1,8 +1,26 @@
 const pool = require('../models/UserModel.js')
 const userController = {};
 
+userController.getUser = async (req,res,next) => {
+  try{
+      const {user_id} = req.body;
+      const q = 'SELECT * FROM users WHERE user_id=$1'
+ 
+      const user = await pool.query(q, [user_id])
 
-
+      res.locals.user = user;
+      next();
+    } catch(error)  {
+      const errObj = {
+          log: `Error caught in userController middleware @ getUser`,
+          status: 400,
+          message: {
+            error: `${error}`,
+          },
+        };
+        next(errObj);
+    }
+}
 
 userController.createUser = async (req,res,next) => {
     try{
