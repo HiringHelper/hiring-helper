@@ -22,5 +22,8 @@ router.put('/update-user', userController.updateUser, (req,res)=>{
     return res.status(200).json({updated: res.locals.updatedUser})    
 });
 
+router.get('/verify-user', userController.verifyUser, (req,res) =>{
+    return res.status(201).json({user: res.locals.user})
+});
 
 module.exports = router;
