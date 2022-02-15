@@ -1,10 +1,10 @@
 const pool = require('../models/UserModel.js')
-const userController = {};
+const jobController = {};
+import * as express from 'express'
 
 
 
-
-userController.createUser = async (req,res,next) => {
+jobController.createJob = async (req,res,next) => {
     try{
         const {firstName,lastName,email,Password} = req.body;
         const q = 'INSERT INTO users (firstName, lastName, email, Password) VALUES ($1, $2, $3, $4) RETURNING *'
@@ -15,17 +15,17 @@ userController.createUser = async (req,res,next) => {
         next();
       } catch(error)  {
         const errObj = {
-            log: `Error caught in userController middleware @ createUser`,
+            log: `Error caught in jobController middleware @ createUser`,
             status: 400,
             message: {
-              error: `${error}`,
+              err: `${err}`,
             },
           };
           next(errObj);
       }
 }
 
-userController.deleteUser = async (req,res,next) => {
+jobController.deleteUser = async (req,res,next) => {
     try{
         const {user_id} = req.body;
 
@@ -47,19 +47,19 @@ userController.deleteUser = async (req,res,next) => {
       }
 }
 
-userController.updateUser = async (req,res,next) => {
+jobController.updateUser = async (req,res,next) => {
     try{
-        const {firstName, lastName, email, password, user_id} = req.body;
+        const {user_id} = req.body;
 
-        const q = 'UPDATE users SET firstName=$1, lastName=$2, email=$3, password=$4 WHERE user_id=$5 RETURNING *'
-        const updatedUser = await pool.query(q, [firstName, lastName, email, password, user_id])
+        const q = 'DELETE FROM users WHERE user_id=$1 RETURNING *'
+        const deletedUser = await pool.query(q, [user_id])
 
-        res.locals.updatedUser = updatedUser;
+        res.locals.deletedUser = deletedUser;
 
         next();
       } catch(error)  {
         const errObj = {
-            log: `Error caught in User Controller middleware @ updateUser`,
+            log: `Error caught in User Controller middleware @ deleteUser`,
             status: 400,
             message: {
               err: `${err}`,
@@ -68,4 +68,4 @@ userController.updateUser = async (req,res,next) => {
           next(errObj);
       }
 }
-module.exports = userController;
+module.exports = jobController;
