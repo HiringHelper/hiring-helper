@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  Wishlist: [
+  Wishlist: [],
+  Applied: [
     {
       companyName: 'Chase',
       jobTitle: 'Mid SE',
@@ -35,7 +36,6 @@ const initialState = {
       user_id: '',
     },
   ],
-  Applied: [],
   Interview: [
     {
       companyName: 'Netflix',
@@ -79,9 +79,6 @@ export const jobsSlice = createSlice({
   name: 'jobs',
   initialState,
   reducers: {
-    increment: (state, action) => {
-      state.value += action.payload;
-    },
     drop: (state, action) => {
       const source = action.payload.source;
       const destination = action.payload.destination;
@@ -95,6 +92,6 @@ export const jobsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, drop, addJob } = jobsSlice.actions;
+export const { drop, addJob } = jobsSlice.actions;
 
 export default jobsSlice.reducer;

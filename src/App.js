@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import showModalSlice from './redux/showModalSlice.js';
 import ColumnContainer from './components/ColumnContainer/ColumnContainer.jsx';
 import Header from './components/Header/Header.jsx';
+import LoginPage from './pages/LoginPage/LoginPage.jsx';
 
 const App = () => {
   const modals = useSelector((state) => {state.modals})
@@ -11,8 +12,9 @@ const App = () => {
 
   return (
     <div id='app'>
-      <Header />
-      <ColumnContainer />
+      {/* <Header />
+      <ColumnContainer /> */}
+      <LoginPage />
     </div>
   );
 };
