@@ -1,7 +1,15 @@
 import React from 'react';
 import './LoginPage.scss';
 import { Link } from 'react-router-dom'
+const navigation = useNavigation();
+
 function LoginPage() {
+  const navigate = useNavigate()
+
+
+  const handleSubmit = () => {
+
+  }
   return (
     <div className='app'>
     <>

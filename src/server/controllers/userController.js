@@ -124,20 +124,26 @@ userController.verifyUser = async (req,res,next) => {
   const q = 'SELECT * FROM users WHERE email=$1'
   const user = await pool.query(q, [email])
   if(user.rows.length === 0){
-    return res.status(401).send('Invalid Username or Password')
+    res.locals.verified = false
+    res.locals.user = {}
+    return next()
   }
   const hashedPass = user.rows[0].password
+  delete user.rows[0].password
 
-  res.locals.user = user;
   bcrypt.compare(password, hashedPass, (err,result) =>{
     if(err){
       console.log(err)
       next(err)
     }
     if(result){
-      next()
+      res.locals.verified = true
+      res.locals.user = user.rows[0]
+      return next()
     }else{
-      return res.status(401).send('Invalid Username or Password')
+      res.locals.verified = false
+      res.locals.user = {}
+      return next()
     }
   })
 
