@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoginPage.scss';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { TextField, Grid } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../redux/jobsSlice';
 
@@ -48,28 +49,30 @@ function LoginPage() {
 
   return (
     <div className='app'>
-      <>
-        <div id='login-background'>
-          <div id='title-container'>
-            <h1>App Name</h1>
-          </div>
+    <>
+      <div id='login-background'>
+        <div id='title-container'>
+          <h1>Hiring Helper</h1>
         </div>
-        <div id='login-parent'>
-          <div id='input-container'>
-            <form id='myform'>
-              <label for='email'>Email:</label>
-              <input type='text' id='email' name='email'></input>
-              <br />
-              <br />
-              <label for='password'>Password:</label>
-              <input type='password' id='password' name='password'></input>
-              <br />
-              <br />
-              <input type='submit' value='Submit' form='myform' onClick={submit}></input>
-            </form>
-            <Link to='signup'>Signup</Link>
-
-            <Link to='home'>To Home</Link>
+      </div>
+      <div id='login-parent'>
+        <div id='input-container'>
+          <form>
+            <label for='fname'>Username:</label>
+            <TextField type='text' variant='standard' id='field' name='fname' />
+            <br />
+            <br />
+            <label for='lname'>Password:</label>
+            <TextField type='text' variant='standard' id='field' name='lname' />
+            <br />
+            <br />
+            <input type='submit' id='submit-button' style={{fontSize: '1.3rem'}} value='Submit'></input>
+          </form>
+          <div id='login-link'>
+          <Link to='signup'>Signup</Link>
+          <p />
+          <Link to='home'>To Home</Link>
+          </div>
           </div>
         </div>
       </>
