@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  user_id: 1,
   Wishlist: [],
   Applied: [
     {
@@ -88,10 +89,13 @@ export const jobsSlice = createSlice({
     addJob: (state, action) => {
       state.Wishlist.push({...action.payload});
     },
+    updateId: (state, action) => {
+      state.user_id = action.payload;
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { drop, addJob } = jobsSlice.actions;
+export const { drop, addJob, updateId } = jobsSlice.actions;
 
 export default jobsSlice.reducer;
