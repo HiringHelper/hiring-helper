@@ -1,5 +1,6 @@
 import React from 'react';
 import './SignupPage.scss';
+import { TextField, Grid } from '@mui/material';
 
 function SignupPage() {
   return (
@@ -7,23 +8,24 @@ function SignupPage() {
     <>
       <div id='login-background'>
         <div id='title-container'>
-          <h1>App Name</h1>
+          <h1>Hiring Helper</h1>
         </div>
       </div>
       <div id='login-parent'>
         <div id='input-container'>
-          <form>
-            <label for='username'>Username:</label>
-            <input type='text' id='username' name='username'></input>
-            <label for='password'>Password:</label>
-            <input type='text' id='password' name='password'></input>
-            <label for='password'>Email:</label>
-            <input type='text' id='email' name='email'></input>
-            <input type='submit' value='Submit'></input>
-          </form>
-          <a className='login-link' href='#'>
-            Signup
-          </a>
+        <Grid container direction='column' spacing={2} justifyContent='center' alignItems='center'>
+              <Grid item>
+                <TextField variant='outlined' type='text' id='text-username' label='username' placeholder='enter username' size='small'/>
+              </Grid>
+              <Grid item>
+                <TextField variant='outlined' type='text' id='text-password' label='password' placeholder='enter password' size='small' />
+              </Grid>
+              <Grid item>
+                <TextField variant='outlined' type='text' id='text-email' label='email' placeholder='enter email' size='small' />
+              </Grid>
+                <p />
+                <input type='submit' id='submit-button' style={{fontSize: '1.3rem'}} value='Submit'/>
+        </Grid> 
         </div>
       </div>
     </>
