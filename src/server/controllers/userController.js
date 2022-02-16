@@ -120,6 +120,8 @@ userController.updateUser = async (req,res,next) => {
 
 userController.verifyUser = async (req,res,next) => {
   const {email, password} = req.body;
+  console.log(req.body);
+  console.log('e + pw :', email, password);
   
   const q = 'SELECT * FROM users WHERE email=$1'
   const user = await pool.query(q, [email])
