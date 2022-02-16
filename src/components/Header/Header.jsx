@@ -15,7 +15,7 @@ function Header() {
   return(
     <>
       <div id='header'>
-        <button id='add-job' onClick={addJobClick} >
+        <button id='add-job' onClick={addJobClick} style={{fontSize:'1.2rem'}} >
           + Add job
         </button>
         <div id='title'>

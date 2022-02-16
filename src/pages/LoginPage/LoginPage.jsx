@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoginPage.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
+import { TextField, Grid } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../redux/jobsSlice';
 
@@ -9,6 +10,7 @@ function LoginPage() {
   const navigate = useNavigate()
 
   function submit(e) {
+    console.log('hello')
     e.preventDefault();
     const form = document.getElementById('myform');
     if (!form.email.value || !form.password.value) {
@@ -51,27 +53,30 @@ function LoginPage() {
 
   return (
     <div className='app'>
-      <>
-        <div id='login-background'>
-          <div id='title-container'>
-            <h1>App Name</h1>
-          </div>
+    <>
+      <div id='login-background'>
+        <div id='title-container'>
+          <h1>Hiring Helper</h1>
         </div>
-        <div id='login-parent'>
-          <div id='input-container'>
-            <form id='myform'>
-              <label for='email'>Email:</label>
-              <input type='text' id='email' name='email'></input>
-              <br />
-              <br />
-              <label for='password'>Password:</label>
-              <input type='password' id='password' name='password'></input>
-              <br />
-              <br />
-              <input type='submit' value='Sign in' form='myform' onClick={submit}></input>
-            </form>
-            <Link to='signup'>Don't have an account? Signup</Link>
-
+      </div>
+      <div id='login-parent'>
+        <div id='input-container'>
+          <form id='myform'>
+            <label for='email'>Email:</label>
+            <TextField type='text' variant='standard' id='field' name='email' />
+            <br />
+            <br />
+            <label for='password'>Password:</label>
+            <TextField type='password' variant='standard' id='field' name='password' />
+            <br />
+            <br />
+            <input type='submit' id='submit-button' style={{fontSize: '1.3rem'}} value='Log In' onClick={submit}></input>
+          </form>
+          <div id='login-link'>
+          <Link to='signup'>Signup</Link>
+          <p />
+          <Link to='home'>To Home</Link>
+          </div>
           </div>
         </div>
       </>

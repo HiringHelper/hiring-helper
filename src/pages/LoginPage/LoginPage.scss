@@ -1,4 +1,11 @@
-@import '../../_variables';
+@import '../../variables';
+h1 {
+  font-family: $font-playfair;
+}
+
+body {
+  font-family: $font-raleway;
+}
 
 #login-background {
   display: flex;
@@ -20,6 +27,10 @@
   gap: 2rem;
 }
 
+#login-link {
+  font-size: 1.1rem;
+}
+
 #input-container {
   display: flex;
   justify-content: center;
@@ -27,7 +38,7 @@
   flex-direction: column;
   gap: 1rem;
   background-color: $background;
-  padding: 4rem 2.5rem;
+  padding: 4rem 4rem;
   border-radius: 1rem;
   box-shadow: 0 0 0.3rem;
   margin-bottom: -5rem;
@@ -47,4 +58,45 @@
 
 .login-link:hover {
   text-decoration: underline;
+}
+
+#submit-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: 200ms;
+}
+
+#submit-button:hover {
+  background-color: $button-hover;
+  color: white;
+  box-shadow: 0 0 0.2rem $button-hover;
+  transition: 200ms;
+}
+
+#submit-button:active {
+  background-color: $button-active;
+  color: white;
+  box-shadow: 0 0 0.2rem $button-active;
+  transition: 200ms;
+}
+
+#text-username {
+  margin-bottom: 1rem;
+}
+
+#text-password{
+  margin-bottom: 1rem;
+}
+
+#text-email {
+  margin-bottom: 1rem;
+}
+
+.MuiFormLabel-root .Mui-focused {
+  color: red !important;
+}
+
+.MuiOutlinedInput-root .Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: red !important;
 }
