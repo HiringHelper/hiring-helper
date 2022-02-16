@@ -4,8 +4,8 @@ CREATE TABLE users (
     firstName varchar(255),
     lastName varchar(255),
     email varchar(255),
-    Password varchar(255),
-    date_created GETDATE()
+    password varchar(255),
+    state varchar(max)
 );
 
 
