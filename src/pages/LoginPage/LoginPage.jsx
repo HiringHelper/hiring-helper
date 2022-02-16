@@ -1,8 +1,50 @@
 import React from 'react';
 import './LoginPage.scss';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from '../../redux/jobsSlice';
 
 function LoginPage() {
+  const dispatch = useDispatch();
+
+  function submit(e) {
+    e.preventDefault();
+    const form = document.getElementById('myform');
+    if (!form.email.value || !form.password.value) {
+      alert('Please enter both fields');
+      return;
+    }
+    fetch('http://localhost:3000/user/verify-user', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: form.email.value,
+        password: form.password.value,
+      }),
+    })
+      .then((data) => data.json())
+      .then((res) => {
+        console.log('update user res: ', res);
+        //uncomment this when 
+        // checkVerified(res);
+      });
+  }
+
+  function checkVerified(res) {
+    //verified - boolean
+    //user - obj (column titles)
+    if (!res.verified) {
+      alert('Incorrect user info, please try again');
+      return;
+    } else {
+      //send dispatch to update state with user info
+      dispatch(updateUser(res.user));
+      //reroute to home HERE
+
+
+
+    }
+  }
+
   return (
     <div className='app'>
       <>
@@ -13,16 +55,16 @@ function LoginPage() {
         </div>
         <div id='login-parent'>
           <div id='input-container'>
-            <form>
-              <label for='fname'>Username:</label>
-              <input type='text' id='fname' name='fname'></input>
+            <form id='myform'>
+              <label for='email'>Email:</label>
+              <input type='text' id='email' name='email'></input>
               <br />
               <br />
-              <label for='lname'>Password:</label>
-              <input type='text' id='lname' name='lname'></input>
+              <label for='password'>Password:</label>
+              <input type='password' id='password' name='password'></input>
               <br />
               <br />
-              <input type='submit' value='Submit'></input>
+              <input type='submit' value='Submit' form='myform' onClick={submit}></input>
             </form>
             <Link to='signup'>Signup</Link>
 
