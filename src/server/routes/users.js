@@ -14,7 +14,7 @@ router.get('/get-user', userController.getUser, (req,res) =>{
 //returns: email taken: 409 status 'email already taken'
 //         email availible: returns user object
 router.post('/create-user', userController.checkUserEmail, userController.createUser, (req,res) =>{
-    return res.status(201).json({user: res.locals.newUser})
+    return res.status(201).json({uniqueEmail: res.locals.uniqueEmail, user: res.locals.user})
 });
 
 //expects: user_id
