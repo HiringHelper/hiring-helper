@@ -1,6 +1,7 @@
 import React from 'react';
 import './SignupPage.scss';
 import { TextField, Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function SignupPage() {
   return (
@@ -27,8 +28,7 @@ function SignupPage() {
                 <input type='submit' id='submit-button' style={{fontSize: '1.3rem'}} value='Submit'/>
         </Grid> 
         </div>
-      </div>
-    </>
+      </>
     </div>
   );
 }
