@@ -156,6 +156,44 @@ userController.getJobsForUser = async (req,res,next) => {
     console.log(error)
     next(error)
   }
+}
 
+userController.updateUserState = async (req,res,next) => {
+  try{
+      const {state, user_id} = req.body;
+
+      const q = 'UPDATE users SET state=$1 WHERE user_id=$2 RETURNING *'
+      const updatedUser = await pool.query(q, [state,  user_id])
+      if(updatedUser.rows.length === 0){
+        return res.status(404).send('no user found with given id')
+      }
+      res.locals.updatedUserState = updatedUser.rows[0];
+      next();
+    } catch(error)  {
+      const errObj = {
+          log: `Error caught in User Controller middleware @ updateUser`,
+          status: 400,
+          message: {
+            err: `${err}`,
+          },
+        };
+        next(errObj);
+    }
+}
+
+userController.getUserState = async (req,res,next) => {
+  const {user_id} = req.body;
+  
+  const q = 'SELECT state FROM users WHERE user_id=$1'
+  try{
+    const state = await pool.query(q, [user_id]);
+    console.log(state)
+    res.locals.state = state.rows[0].state;
+    next();
+
+  }catch(error){
+    console.log(error)
+    next(error)
+  }
 }
 module.exports = userController;
