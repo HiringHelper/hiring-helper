@@ -1,80 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user_id: 1,
   user: {},
   Wishlist: [],
-  Applied: [
-    {
-      companyName: 'Chase',
-      jobTitle: 'Mid SE',
-      salary: '',
-      location: '',
-      color: '',
-      description: '',
-      date: '',
-      deadline: '',
-      dateApplied: '',
-      notes: '',
-      contacts: '',
-      stage: '',
-      offer: '',
-      user_id: '',
-    },
-    {
-      companyName: 'Facebook',
-      jobTitle: 'Sr SE',
-      salary: '',
-      location: '',
-      color: '',
-      description: '',
-      date: '',
-      deadline: '',
-      dateApplied: '',
-      notes: '',
-      contacts: '',
-      stage: '',
-      offer: '',
-      user_id: '',
-    },
-  ],
-  Interview: [
-    {
-      companyName: 'Netflix',
-      jobTitle: 'Jnr SE',
-      salary: '',
-      location: '',
-      color: '',
-      description: '',
-      date: '',
-      deadline: '',
-      dateApplied: '',
-      notes: '',
-      contacts: '',
-      stage: '',
-      offer: '',
-      user_id: '',
-    },
-  ],
+  Applied: [],
+  Interview: [],
   Offer: [],
-  Rejected: [
-    {
-      companyName: 'LinkedIn',
-      jobTitle: '',
-      salary: '',
-      location: '',
-      color: '',
-      description: '',
-      date: '',
-      deadline: '',
-      dateApplied: '',
-      notes: '',
-      contacts: '',
-      stage: '',
-      offer: '',
-      user_id: '',
-    },
-  ],
+  Rejected: [],
 };
 
 export const jobsSlice = createSlice({
@@ -88,18 +20,21 @@ export const jobsSlice = createSlice({
       state[destination.droppableId].splice(destination.index, 0, card);
     },
     addJob: (state, action) => {
+      console.log(state.Wishlist);
       state.Wishlist.push({...action.payload});
     },
-    updateId: (state, action) => {
-      state.user_id = action.payload;
+    updateState: (state, action) => {
+      for(const key in action.payload){
+        state[key] = action.payload[key]
+      }
     },
     updateUser: (state, action) => {
       state.user = action.payload;
-    }
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { drop, addJob, updateId, updateUser } = jobsSlice.actions;
+export const { drop, addJob, updateState, updateUser } = jobsSlice.actions;
 
 export default jobsSlice.reducer;

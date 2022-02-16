@@ -2,9 +2,11 @@ import React from 'react';
 import './SignupPage.scss';
 import { TextField, Grid } from '@mui/material';
 import {useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
 
 function SignupPage() {
   const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   function submit(e) {
     e.preventDefault();
@@ -45,15 +47,14 @@ function SignupPage() {
       return;
     } else {
       //send dispatch to update state with user info
-
-
+      dispatch(updateUser(res.user));
+      
       // add signup dispatch here
 
 
       //reroute to home HERE
       console.log('verified');
       navigate('/home')
-
     }
   }
 

@@ -3,11 +3,12 @@ import './LoginPage.scss';
 import { Link, useNavigate } from 'react-router-dom'
 import { TextField, Grid } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser } from '../../redux/jobsSlice';
+import { updateState, updateUser } from '../../redux/jobsSlice';
 
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const state = useSelector(state => state.jobs);
 
   function submit(e) {
     e.preventDefault();
@@ -29,10 +30,10 @@ function LoginPage() {
       .then((data) => data.json())
       .then((res) => {
         console.log('update user res: ', res);
-        //uncomment this when 
         checkVerified(res);
       });
   }
+
 
   function checkVerified(res) {
     //verified - boolean
@@ -41,12 +42,11 @@ function LoginPage() {
       alert('Incorrect user info, please try again');
       return;
     } else {
-      //send dispatch to update state with user info
+      const parsed = JSON.parse(res.user.state);
       dispatch(updateUser(res.user));
+      dispatch(updateState(parsed));
       //reroute to home HERE
-      console.log('verified');
-      navigate('/home')
-
+      navigate('/home');
     }
   }
 
