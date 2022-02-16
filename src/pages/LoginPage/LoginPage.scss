@@ -1,0 +1,50 @@
+@import '../../_variables';
+
+#login-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  background-color: $header;
+}
+
+#login-parent {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 2rem;
+}
+
+#input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: $background;
+  padding: 4rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.3rem;
+  margin-bottom: -5rem;
+}
+
+#input-container form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-link {
+  text-decoration: none;
+  color: $title;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}

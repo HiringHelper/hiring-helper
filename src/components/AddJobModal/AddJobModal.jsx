@@ -30,6 +30,7 @@ const AddJobModal = () => {
 
   const handleSaveJob = () => {
     dispatch(addJob({ companyName, jobTitle, salary, location, color, description }));
+    dispatch(openJobModal(false));
     setCompanyName('');
     setJobTitle('');
     setSalary('');
@@ -46,7 +47,7 @@ const AddJobModal = () => {
     <div className='addJobModal' id='modal-overlay'>
       <form className='addJobForm' id='form-modal'>
         <IconContext.Provider value={{className: 'exit-modal', size:'1.5em'}}>
-          <AiOutlineCloseCircle onClick={(e) => onCloseButtonClick()} style={{color: 'black'}}/>
+          <AiOutlineCloseCircle className='clickable' onClick={(e) => onCloseButtonClick()} style={{color: 'black'}}/>
         </IconContext.Provider>
         <h1>Add New Job</h1>
         <p />
@@ -67,7 +68,7 @@ const AddJobModal = () => {
         <TextField id='stage' variant='outlined' type='text' size='small' label='stage' placeholder='Add Stage' value={stage} onChange={(e) => setStage(e.target.value)} />
 
         <p />
-        <button type='button' id='save-job' onClick={handleSaveJob}>Save Job</button>
+        <button className='clickable' type='button' id='save-job' onClick={handleSaveJob}>Save Job</button>
       </form>
     </div>
   )

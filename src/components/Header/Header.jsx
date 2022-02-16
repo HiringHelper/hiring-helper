@@ -10,9 +10,7 @@ function Header() {
 
 
   const addJobClick = () => {
-    console.log('jobModal:', jobModal)
-    dispatch(openJobModal(true))
-    console.log('jobModal after click:', jobModal)
+    dispatch(openJobModal(true));
   }
   return(
     <>
