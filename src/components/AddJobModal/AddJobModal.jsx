@@ -50,7 +50,7 @@ const AddJobModal = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user_id: state.user_id,
+        user_id: state.user.user_id,
         state: JSON.stringify(state),
       }),
     })
