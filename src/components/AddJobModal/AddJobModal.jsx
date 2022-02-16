@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addJob} from '../../redux/addJobSlice';
+import { addJob} from '../../redux/jobsSlice';
 import { TextField } from '@mui/material';
 import './AddJobModal.scss'
 import { IconContext } from 'react-icons';
@@ -58,8 +58,8 @@ const AddJobModal = () => {
         <TextField className='input-field' id='color' variant='outlined' type='text' size='small' label='Color' placeholder='Add Color' value={color} onChange={(e) => setColor(e.target.value)} />
         <TextField id='deadline' variant='outlined' type='text' size='small' label='Deadline' placeholder='Add Deadline' value={deadline} onChange={(e) => setDescription(e.target.value)} />
         <p />
-        <TextField id='description' variant='outlined' multiline='true' type='text' size='small' label='Description' placeholder='Add Description' value={description} onChange={(e) => setDescription(e.target.value)} />
-        <TextField id='dateApplied' variant='outlined' multiline='true' type='text' size='small' label='Date Applied' placeholder='Add Date Applied' value={dateApplied} onChange={(e) => setdateApplied(e.target.value)} />
+        <TextField id='description' variant='outlined' multiline={true} type='text' size='small' label='Description' placeholder='Add Description' value={description} onChange={(e) => setDescription(e.target.value)} />
+        <TextField id='dateApplied' variant='outlined' type='text' size='small' label='Date Applied' placeholder='Add Date Applied' value={dateApplied} onChange={(e) => setdateApplied(e.target.value)} />
         <TextField id='offer' variant='outlined' type='text' size='small' label='Offer' placeholder='Add Offer' value={offer} onChange={(e) => setOffer(e.target.value)} />
         <p />
         <TextField id='notes' variant='outlined' type='text' size='small' label='Add Notes' placeholder='Add Notes' value={notes} onChange={(e) => setNotes(e.target.value)} />

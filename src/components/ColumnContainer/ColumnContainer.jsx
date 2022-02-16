@@ -9,17 +9,13 @@ function ColumnContainer() {
   const titles = ['Wishlist', 'Applied', 'Interview', 'Offer', 'Rejected'];
   const dispatch = useDispatch()
 
-  function dragStart(){
-    console.log('drag start');
+  function dragStart(item){
   }
 
-  function dragEnd(result){
-    const {destination, source, draggableId } = result
-    const target = draggableId
-
-    dispatch(drop({destination:destination.droppableId, source: source.droppableId, target}))
-    console.log('drag end');
-    // console.log('item is: ', item);
+  function dragEnd(item){ //runs anytime a card is dropped
+    if(!item.destination) return;
+    dispatch(drop(item));
+    //update database with card info here
   }
 
   return (

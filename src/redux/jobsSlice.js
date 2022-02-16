@@ -1,11 +1,78 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  Wishlist: ['Chase', 'Facebook'],
+  Wishlist: [
+    {
+      companyName: 'Chase',
+      jobTitle: 'Mid SE',
+      salary: '',
+      location: '',
+      color: '',
+      description: '',
+      date: '',
+      deadline: '',
+      dateApplied: '',
+      notes: '',
+      contacts: '',
+      stage: '',
+      offer: '',
+      user_id: '',
+    },
+    {
+      companyName: 'Facebook',
+      jobTitle: 'Sr SE',
+      salary: '',
+      location: '',
+      color: '',
+      description: '',
+      date: '',
+      deadline: '',
+      dateApplied: '',
+      notes: '',
+      contacts: '',
+      stage: '',
+      offer: '',
+      user_id: '',
+    },
+  ],
   Applied: [],
-  Interview: ['Netflix'],
+  Interview: [
+    {
+      companyName: 'Netflix',
+      jobTitle: 'Jnr SE',
+      salary: '',
+      location: '',
+      color: '',
+      description: '',
+      date: '',
+      deadline: '',
+      dateApplied: '',
+      notes: '',
+      contacts: '',
+      stage: '',
+      offer: '',
+      user_id: '',
+    },
+  ],
   Offer: [],
-  Rejected: ['LinkedIn'],
+  Rejected: [
+    {
+      companyName: 'LinkedIn',
+      jobTitle: '',
+      salary: '',
+      location: '',
+      color: '',
+      description: '',
+      date: '',
+      deadline: '',
+      dateApplied: '',
+      notes: '',
+      contacts: '',
+      stage: '',
+      offer: '',
+      user_id: '',
+    },
+  ],
 };
 
 export const jobsSlice = createSlice({
@@ -16,15 +83,18 @@ export const jobsSlice = createSlice({
       state.value += action.payload;
     },
     drop: (state, action) => {
-      const {source, destination, target} = action.payload
-      const currentIndex = state[source].indexOf(target)
-      state[source].splice(currentIndex,1)
-      state[destination].push(target)
+      const source = action.payload.source;
+      const destination = action.payload.destination;
+      const [card] = state[source.droppableId].splice(source.index, 1);
+      state[destination.droppableId].splice(destination.index, 0, card);
+    },
+    addJob: (state, action) => {
+      state.Wishlist.push({...action.payload});
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment , drop} = jobsSlice.actions;
+export const { increment, drop, addJob } = jobsSlice.actions;
 
 export default jobsSlice.reducer;
