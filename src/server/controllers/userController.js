@@ -62,7 +62,7 @@ userController.createUser = async (req,res,next) => {
       }
       try{
         const newUser = await pool.query(q, [firstName, lastName, email, hash])
-        res.locals.user = newUser
+        res.locals.user = newUser.rows[0]
         next();
       } catch(error)  {
         const errObj = {

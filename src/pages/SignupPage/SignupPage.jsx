@@ -3,6 +3,7 @@ import './SignupPage.scss';
 import { TextField, Grid } from '@mui/material';
 import {useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
+import { updateUser } from '../../redux/jobsSlice'
 
 function SignupPage() {
   const navigate = useNavigate()
@@ -47,6 +48,7 @@ function SignupPage() {
       return;
     } else {
       //send dispatch to update state with user info
+      console.log(res.user)
       dispatch(updateUser(res.user));
       
       // add signup dispatch here
