@@ -36,8 +36,8 @@ router.put('/update-state', userController.updateUserState, (req,res)=>{
 //expects: email, password
 //returns: unverified: 401 'invalid username or password'
 //         verified: array of jobs associated with user
-router.post('/verify-user', userController.verifyUser, userController.getJobsForUser, (req,res) =>{
-    return res.status(201).json({jobs: res.locals.userJobs})
+router.post('/verify-user', userController.verifyUser, (req,res) =>{
+    return res.status(200).json({verified: res.locals.verified, user: res.locals.user})
 });
 router.get('/get-state', userController.getUserState, (req,res) =>{
     return res.status(200).json({state: res.locals.state})

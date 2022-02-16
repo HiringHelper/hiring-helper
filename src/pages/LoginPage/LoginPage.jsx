@@ -16,16 +16,17 @@ function LoginPage() {
     }
     fetch('http://localhost:3000/user/verify-user', {
       method: 'POST',
+      mode: 'cors',
       body: JSON.stringify({
-        email: form.email.value,
-        password: form.password.value,
+        email: 'idan',
+        password: 'idan1234',
       }),
     })
       .then((data) => data.json())
       .then((res) => {
         console.log('update user res: ', res);
         //uncomment this when 
-        // checkVerified(res);
+        checkVerified(res);
       });
   }
 
@@ -39,7 +40,7 @@ function LoginPage() {
       //send dispatch to update state with user info
       dispatch(updateUser(res.user));
       //reroute to home HERE
-
+      console.log('verified');
 
 
     }
