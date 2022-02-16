@@ -43,8 +43,9 @@ function LoginPage() {
       return;
     } else {
       const parsed = JSON.parse(res.user.state);
-      dispatch(updateUser(res.user));
       dispatch(updateState(parsed));
+      dispatch(updateUser(res.user));
+
       //reroute to home HERE
       navigate('/home');
     }

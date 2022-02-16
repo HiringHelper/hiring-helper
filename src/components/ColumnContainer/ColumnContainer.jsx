@@ -8,7 +8,7 @@ import './ColumnContainer.scss';
 function ColumnContainer() {
   const titles = ['Wishlist', 'Applied', 'Interview', 'Offer', 'Rejected'];
   const dispatch = useDispatch();
-  const state = useSelector(state => state.jobs);
+  let state = useSelector(state => state.jobs);
 
   function dragStart(item) {  }
 
@@ -16,17 +16,18 @@ function ColumnContainer() {
     //runs anytime a card is dropped
     if (!item.destination) return;
     dispatch(drop(item));
-    updateUser();
+    updateUser(state);
   }
   
-  function updateUser() {
+  function updateUser(state) {
+    console.log(state.user.user_id)
     fetch('http://localhost:3000/user/update-state', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user_id: state.user_id,
+        user_id: state.user.user_id,
         state: JSON.stringify(state),
       }),
     })

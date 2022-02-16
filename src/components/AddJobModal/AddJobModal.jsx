@@ -44,6 +44,7 @@ const AddJobModal = () => {
   };
 
   function updateUser() {
+    console.log(state)
     fetch('http://localhost:3000/user/update-state', {
       method: 'PUT',
       headers: {

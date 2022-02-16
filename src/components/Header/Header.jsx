@@ -7,6 +7,7 @@ import './Header.scss';
 function Header() {
   const jobModal = useSelector((state) => state.modals.jobModal)
   const dispatch = useDispatch()
+  const state = useSelector(state => state.jobs);
 
 
   const addJobClick = () => {
@@ -22,7 +23,7 @@ function Header() {
           <h1>App Name</h1>
         </div>
         <div id='hello'>
-          <p>Hello, Huy!</p>
+          <p>Hello, {state.user.firstname}!</p>
         </div>
       </div>
       {jobModal && (
