@@ -174,7 +174,7 @@ userController.updateUserState = async (req,res,next) => {
           log: `Error caught in User Controller middleware @ updateUser`,
           status: 400,
           message: {
-            err: `${err}`,
+            err: `${error}`,
           },
         };
         next(errObj);
