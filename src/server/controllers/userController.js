@@ -34,9 +34,11 @@ userController.checkUserEmail = async (req, res, next) => {
   try{
     const usersWithEmail = await pool.query(sqlQuery, [email])
     if(usersWithEmail.rows.length === 0){
+      res.locals.uniqueEmail = true
       return next()
     }else{
-      return res.status(409).send('Email already in use')
+      res.locals.uniqueEmail = false
+      return next()
     }
   }catch(error){
     console.log(error)
@@ -45,6 +47,10 @@ userController.checkUserEmail = async (req, res, next) => {
 }
 
 userController.createUser = async (req,res,next) => {
+    if(!res.locals.uniqueEmail){
+      res.locals.user = {}
+      return next()
+    }
     const {firstName,lastName,email,password} = req.body;
     const saltRounds = 10;
     const q = 'INSERT INTO users (firstName, lastName, email, password) VALUES ($1, $2, $3, $4) RETURNING *'
@@ -56,7 +62,7 @@ userController.createUser = async (req,res,next) => {
       }
       try{
         const newUser = await pool.query(q, [firstName, lastName, email, hash])
-        res.locals.newUser = newUser
+        res.locals.user = newUser
         next();
       } catch(error)  {
         const errObj = {

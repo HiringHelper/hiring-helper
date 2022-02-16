@@ -11,7 +11,6 @@ function LoginPage() {
   const state = useSelector(state => state.jobs);
 
   function submit(e) {
-    console.log('hello')
     e.preventDefault();
     const form = document.getElementById('myform');
     if (!form.email.value || !form.password.value) {
@@ -73,9 +72,8 @@ function LoginPage() {
             <input type='submit' id='submit-button' style={{fontSize: '1.3rem'}} value='Log In' onClick={submit}></input>
           </form>
           <div id='login-link'>
-          <Link to='signup'>Signup</Link>
+          <Link to='signup'>Sign Up</Link>
           <p />
-          <Link to='home'>To Home</Link>
           </div>
           </div>
         </div>
