@@ -3,6 +3,7 @@ import './SignupPage.scss';
 
 function SignupPage() {
   return (
+    <div className='app'>
     <>
       <div id='login-background'>
         <div id='title-container'>
@@ -26,6 +27,7 @@ function SignupPage() {
         </div>
       </div>
     </>
+    </div>
   );
 }
 

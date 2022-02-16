@@ -1,8 +1,9 @@
 import React from 'react';
 import './LoginPage.scss';
-
+import { Link } from 'react-router-dom'
 function LoginPage() {
   return (
+    <div className='app'>
     <>
       <div id='login-background'>
         <div id='title-container'>
@@ -22,10 +23,13 @@ function LoginPage() {
             <br />
             <input type='submit' value='Submit'></input>
           </form>
-          <a className='login-link' href='#'>Signup</a>
+          <Link to='signup'>Signup</Link>
+
+          <Link to='home'>To Home</Link>
         </div>
       </div>
     </>
+    </div>
   );
 }
 

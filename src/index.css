@@ -4,7 +4,7 @@ html, body {
   box-sizing: border-box;
 }
 
-#app {
+.app {
   display: flex;
   flex-direction: column;
   height: 100%;
