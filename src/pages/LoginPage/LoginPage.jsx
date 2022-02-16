@@ -2,7 +2,6 @@ import React from 'react';
 import './LoginPage.scss';
 import { Link } from 'react-router-dom'
 import { TextField, Grid } from '@mui/material'
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../redux/jobsSlice';
 
@@ -50,7 +49,6 @@ function LoginPage() {
 
   return (
     <div className='app'>
-<<<<<<< HEAD
     <>
       <div id='login-background'>
         <div id='title-container'>
@@ -74,30 +72,7 @@ function LoginPage() {
           <Link to='signup'>Signup</Link>
           <p />
           <Link to='home'>To Home</Link>
-=======
-      <>
-        <div id='login-background'>
-          <div id='title-container'>
-            <h1>App Name</h1>
           </div>
-        </div>
-        <div id='login-parent'>
-          <div id='input-container'>
-            <form id='myform'>
-              <label for='email'>Email:</label>
-              <input type='text' id='email' name='email'></input>
-              <br />
-              <br />
-              <label for='password'>Password:</label>
-              <input type='password' id='password' name='password'></input>
-              <br />
-              <br />
-              <input type='submit' value='Submit' form='myform' onClick={submit}></input>
-            </form>
-            <Link to='signup'>Signup</Link>
-
-            <Link to='home'>To Home</Link>
->>>>>>> dev
           </div>
         </div>
       </>
