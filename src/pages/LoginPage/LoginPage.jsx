@@ -1,11 +1,12 @@
 import React from 'react';
 import './LoginPage.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../redux/jobsSlice';
 
 function LoginPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   function submit(e) {
     e.preventDefault();
@@ -16,10 +17,12 @@ function LoginPage() {
     }
     fetch('http://localhost:3000/user/verify-user', {
       method: 'POST',
-      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        email: 'idan',
-        password: 'idan1234',
+        email: form.email.value,
+        password: form.password.value,
       }),
     })
       .then((data) => data.json())
@@ -41,7 +44,7 @@ function LoginPage() {
       dispatch(updateUser(res.user));
       //reroute to home HERE
       console.log('verified');
-
+      navigate('/home')
 
     }
   }
@@ -65,11 +68,10 @@ function LoginPage() {
               <input type='password' id='password' name='password'></input>
               <br />
               <br />
-              <input type='submit' value='Submit' form='myform' onClick={submit}></input>
+              <input type='submit' value='Sign in' form='myform' onClick={submit}></input>
             </form>
-            <Link to='signup'>Signup</Link>
+            <Link to='signup'>Don't have an account? Signup</Link>
 
-            <Link to='home'>To Home</Link>
           </div>
         </div>
       </>
