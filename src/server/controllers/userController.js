@@ -121,26 +121,28 @@ userController.updateUser = async (req,res,next) => {
 userController.verifyUser = async (req,res,next) => {
   const {email, password} = req.body;
   
-  const q = 'SELECT password, user_id, state FROM users WHERE email=$1'
+  const q = 'SELECT * FROM users WHERE email=$1'
   const user = await pool.query(q, [email])
   if(user.rows.length === 0){
-    res.locals.user_id = -1
-    res.locals.state = ''
+    res.locals.verified = false
+    res.locals.user = {}
     return next()
   }
   const hashedPass = user.rows[0].password
+  delete user.rows[0].password
+
   bcrypt.compare(password, hashedPass, (err,result) =>{
     if(err){
       console.log(err)
       next(err)
     }
     if(result){
-      res.locals.user_id = user.rows[0].user_id
-      res.locals.state = user.rows[0].state
+      res.locals.verified = true
+      res.locals.user = user.rows[0]
       return next()
     }else{
-      res.locals.user_id = -1
-      res.locals.state = ''
+      res.locals.verified = false
+      res.locals.user = {}
       return next()
     }
   })
