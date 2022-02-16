@@ -5,26 +5,8 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 
 function Column(props) {
-  // const cards = ['Chase', 'Facebook'];
-  // const cards2 = [
-  //   {
-  //     name: 'Chase',
-  //     title: 'Software Engineer',
-  //     status: 'Applied',
-  //   },
-  //   {
-  //     name: 'Facebook',
-  //     title: 'Software Engineer',
-  //     status: 'Wishlist',
-  //   },
-  //   {
-  //     name: 'Netflix',
-  //     title: 'Software Engineer',
-  //     status: 'Rejected',
-  //   },
-  // ];
   const cards = useSelector((state) => state.jobs[props.title]);
-  
+
   const name = props.title;
 
   return (
@@ -38,8 +20,10 @@ function Column(props) {
             <div className='card-container' {...providedDrop.droppableProps} ref={providedDrop.innerRef}>
               {cards.map((ele, ind) => {
                 return (
-                  <Draggable key={ind} draggableId={ele} index={ind}>
-                    {(providedDrag, snapshot) => <Card title={ele} ind={ind} provided={providedDrag} isDragging={snapshot.isDragging} />}
+                  <Draggable key={ind} draggableId={props.title + '-' + ele.companyName + '-' + ind} index={ind}>
+                    {(providedDrag, snapshot) => (
+                      <Card id={props.title + '-' + ele.companyName + '-' + ind} obj={ele} ind={ind} provided={providedDrag} isDragging={snapshot.isDragging} />
+                    )}
                   </Draggable>
                 );
               })}
