@@ -42,6 +42,7 @@ function LoginPage() {
       alert('Incorrect user info, please try again');
       return;
     } else {
+      if(res.user.state == ''){ res.user.state = null}
       const parsed = JSON.parse(res.user.state);
       dispatch(updateState(parsed));
       dispatch(updateUser(res.user));

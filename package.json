@@ -5,6 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --open & nodemon ./src/server/server.js",
+    "django": "cross-env NODE_ENV=development webpack serve --open & python3 ./api/manage.py runserver 3000",
     "server": "nodemon ./src/server/server.js"
   },
   "author": "",
